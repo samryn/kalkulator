@@ -10,6 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    
+    private Double toDouble(String str) {
+        try {
+            return Double.valueOf(str);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+
+    }
+    
     private EditText edtWidth;
     private EditText edtHeight;
     private EditText edtLength;
@@ -25,11 +35,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edtLength=findViewById(R.id.edt_length);
         btnCalculate=findViewById(R.id.btn_calculate);
         tvResult=findViewById(R.id.tv_result);
+        
+        btnCalculate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (View.getId()==R.id.btn_calculate) {
+        if (view.getId()==R.id.btn_calculate) {
             String inputLength =
                     edtLength.getText().toString().trim();
             String inputWidth =
